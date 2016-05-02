@@ -6,7 +6,7 @@ const eslint = require('gulp-eslint');
 const exec = require('child_process').exec;
 const webpack = require('webpack-stream');
 
-const paths = ['*.js', 'src/*.js', 'test/*_spec.js', 'models/*.js'];
+const paths = ['*.js', 'src/**/*.js', 'test/*_spec.js', 'models/*.js'];
 
 var runCommand = function(command) {
   exec(command, (err, stdout, stderr) => {

@@ -9,11 +9,21 @@
     </nav>
     <main>
       <section>
-        ...
+        <input id="test" type="text"> 
       </section>
     </main>
     <footer>
     </footer>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+      var socket = io();
+      $(document).on('keydown', (event) => {
+        console.log(event.keyCode);
+        socket.emit('keypress', event.keyCode);
+        return false;
+      });
+    </script>
     <script src="./bundle.js"></script>
   </body>
 </html>
