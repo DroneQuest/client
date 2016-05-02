@@ -21,6 +21,7 @@
   "homepage": "https://github.com/DroneQuest/client#readme",
   "devDependencies": {
     "css-loader": "^0.23.1",
+    "gulp": "^3.9.1",
     "gulp-cli": "^1.2.1",
     "gulp-eslint": "^2.0.0",
     "style-loader": "^0.13.1",
@@ -29,6 +30,7 @@
   "dependencies": {
     "express": "^4.13.4",
     "fs": "0.0.2",
-    "socket.io": "^1.4.5"
+    "socket.io": "^1.4.5",
+    "socket.io-client": "^1.4.5"
   }
 }

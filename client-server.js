@@ -1,7 +1,7 @@
 'use strict';
 
 const express = require('express');
-const CLIENT_PORT = process.env.CLIENT_PORT || 8080;
+const CLIENT_PORT = process.env.CLIENT_PORT || 3000;
 
 let app = express();
 let http = require('http').Server(app);
@@ -22,4 +22,3 @@ io.on('connection', (socket) => {
 http.listen(CLIENT_PORT, function(){
   console.log('Client server listening on port ' + CLIENT_PORT);
 });
-
