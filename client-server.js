@@ -14,7 +14,7 @@ app.get('/', function(req, res){
 
 io.on('connection', (socket) => {
   console.log('a user connected');
-  socket.on('keypress', (key) => {
+  socket.on('keydown', (key) => {
     console.log(key);
   });
 });
