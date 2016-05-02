@@ -64,7 +64,7 @@
 	var io = __webpack_require__(4);
 
 	$(document).on('keydown', (event) => {
-	  var socket = io('http://localhost:3000');
+	  var socket = io('http://127.0.0.1:3000');
 	  console.log(messages[event.keyCode]);
 	  socket.emit('keydown', messages[event.keyCode]);
 	  return false;
