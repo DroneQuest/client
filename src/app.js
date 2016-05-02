@@ -1,7 +1,7 @@
 'use strict';
 
 const messages = require('./js/messages');
-var io = require('socket.io-client');
+// var io = require('socket.io-client');
 
 // $(document).on('keydown', (event) => {
 //   var socket = io();
@@ -15,7 +15,7 @@ var io = require('socket.io-client');
 var exampleSocket = new WebSocket('ws://127.0.0.1:3000');
 
 $(document).on('keydown', (event) => {
-  exampleSocket.send("Hello Python!");
+  exampleSocket.send('Hello Python!');
   exampleSocket.send(messages[event.keyCode]);
   console.log(messages[event.keyCode]);
   return false;
