@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html ng-app="app">
+<html ng-app="droneApp">
   <head>
     <meta charset="UTF-8">
     <title>Drone Control</title>
   </head>
-  <body ng-controller="DroneController as dronectrl" ng-keydown="dronectrl.keyPress($event)">
-    <nav>
-      {{'test'}}
+  <body ng-controller="DroneController as dronectrl" ng-keydown="dronectrl.keyPress($event)" ng-init="dronectrl.intervalCall()">
+    <nav ng-app="navApp">
+        <a ng-click="panel.setTab('fly')" ng-class="{currentTab: panel.isActive('fly')}">Fly</a>
+        <a ng-click="panel.setTab('docs')" ng-class="{currentTab: panel.isActive('docs')}">Docs</a>
+        <a ng-click="panel.setTab('faq')" ng-class="{currentTab: panel.isActive('faq')}">FAQ</a>
     </nav>
     <main>
     </main>
