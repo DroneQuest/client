@@ -81,7 +81,7 @@
 
 	  vm.keyPress = function(e) {
 	    command = null;
-	    if(e.keyCode === 13){
+	    if(e.keyCode === 13) {
 	      command = 'takeoff';
 	      vm.postCommands(command, e.keyCode);
 	    }
