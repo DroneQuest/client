@@ -72,11 +72,11 @@
 	// });
 
 
-	var exampleSocket = new WebSocket('ws://127.0.0.1:3000');
+	var socket = new WebSocket('ws://localhost:3000', 'echo-protocol');
 
 	$(document).on('keydown', (event) => {
-	  exampleSocket.send('Hello Python!');
-	  exampleSocket.send(messages[event.keyCode]);
+	  socket.send('Hello Python!');
+	  socket.send(messages[event.keyCode]);
 	  console.log(messages[event.keyCode]);
 	  return false;
 	});
