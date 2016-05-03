@@ -19,7 +19,7 @@ app.controller('DroneController', ['$http', function($http){
     37: 'turn_left', // TURN_LEFT left
     39: 'turn_right', // TURN_RIGHT right
     8:  'reset', // RESET bs
-    69: '0x0D', // CALIBRATE e
+    69: 'trim', // TRIM e
     187:'increase_speed', // INCREASE SPEED +
     189:'decrease_speed', // DECREASE SPEED -
     27: 'halt', // TERMINATE esc
