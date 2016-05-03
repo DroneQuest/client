@@ -1,9 +1,9 @@
 'use strict';
 const angular = require('angular');
 
-var app = angular.module('app', []);
+var app = angular.module('droneApp', []);
 
-app.controller('DroneController', ['$http', '$timeout', function($http, $timeout){
+app.controller('DroneController', ['$http', '$interval', function($http, $interval){
   var vm = this;
   var route = 'http://127.0.0.1:8080/do/';
   vm.codes = {
@@ -41,6 +41,11 @@ app.controller('DroneController', ['$http', '$timeout', function($http, $timeout
       });
   };
 
+  vm.intervalCall = function() {
+    console.log('interval called');
+    $interval(vm.getCommands, 1000);
+  };
+
   vm.keyPress = function(e) {
     vm.command = null;
     if(e.keyCode in vm.codes) {
@@ -52,3 +57,15 @@ app.controller('DroneController', ['$http', '$timeout', function($http, $timeout
     }
   };
 }]);
+
+angular.module('navApp', [])
+  .controller('PanelController', function() {
+    this.tab = 'fly';
+    this.isActive = function(sometab) {
+      this.tab = sometab;
+    };
+    this.setTab = function(newtab) {
+      this.tab = newtab;
+    };
+  });
+  // .directive('')

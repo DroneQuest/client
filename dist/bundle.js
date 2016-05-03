@@ -61,9 +61,9 @@
 	'use strict';
 	const angular = __webpack_require__(3);
 
-	var app = angular.module('app', []);
+	var app = angular.module('droneApp', []);
 
-	app.controller('DroneController', ['$http', function($http){
+	app.controller('DroneController', ['$http', '$interval', function($http, $interval){
 	  var vm = this;
 	  var route = 'http://127.0.0.1:8080/do/';
 	  vm.codes = {
@@ -79,7 +79,7 @@
 	    37: 'turn_left', // TURN_LEFT left
 	    39: 'turn_right', // TURN_RIGHT right
 	    8:  'reset', // RESET bs
-	    69: '0x0D', // CALIBRATE e
+	    69: 'trim', // TRIM e
 	    187:'increase_speed', // INCREASE SPEED +
 	    189:'decrease_speed', // DECREASE SPEED -
 	    27: 'halt', // TERMINATE esc
@@ -88,7 +88,10 @@
 	  vm.command = null;
 
 	  vm.getCommands = function() {
-
+	    $http.get('http://127.0.0.1:8080/navdata')
+	      .then((res) => {
+	        console.log('server res: ', res);
+	      }, err => console.log('GET error: ', err));
 	  };
 
 	  vm.postCommands = function(path) {
@@ -96,6 +99,11 @@
 	      .then((res) => {
 	        console.log('post working res: ', res);
 	      });
+	  };
+
+	  vm.intervalCall = function() {
+	    console.log('interval called');
+	    $interval(vm.getCommands, 1000);
 	  };
 
 	  vm.keyPress = function(e) {
@@ -107,21 +115,20 @@
 	    } else {
 	      console.log('not a valid key input.');
 	    }
-	    // if(e.keycode === 76) {
-	    //   command = 'land';
-	    //   vm.postCommands(vm.command, e.keyCode);
-	    // }
 	  };
 	}]);
-	// const messages = require('./js/messages');
-	// var socket = new WebSocket('ws://localhost:3000', 'echo-protocol');
-	//
-	// $(document).on('keydown', (event) => {
-	//   socket.send('Hello Python!');
-	//   socket.send(messages[event.keyCode]);
-	//   console.log(messages[event.keyCode]);
-	//   return false;
-	// });
+
+	angular.module('navApp', [])
+	  .controller('PanelController', function() {
+	    this.tab = 'fly';
+	    this.isActive = function(sometab) {
+	      this.tab = sometab;
+	    };
+	    this.setTab = function(newtab) {
+	      this.tab = newtab;
+	    };
+	  });
+	  // .directive('')
 
 
 /***/ },
