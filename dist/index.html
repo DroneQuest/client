@@ -1,16 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
   <head>
     <meta charset="UTF-8">
     <title>Drone Control</title>
   </head>
-  <body>
+  <body ng-controller="DroneController as dronectrl" ng-keydown="dronectrl.keyPress($event)">
     <nav>
+      {{'test'}}
     </nav>
     <main>
-    <p>
-      hello world
-    </p>
     </main>
     <footer>
     </footer>
