@@ -3,7 +3,7 @@ const angular = require('angular');
 
 var app = angular.module('app', []);
 
-app.controller('DroneController', ['$http', function($http){
+app.controller('DroneController', ['$http', '$timeout', function($http, $timeout){
   var vm = this;
   var route = 'http://127.0.0.1:8080/do/';
   vm.codes = {
@@ -28,7 +28,10 @@ app.controller('DroneController', ['$http', function($http){
   vm.command = null;
 
   vm.getCommands = function() {
-
+    $http.get('http://127.0.0.1:8080/navdata')
+      .then((res) => {
+        console.log('server res: ', res);
+      }, err => console.log('GET error: ', err));
   };
 
   vm.postCommands = function(path) {
