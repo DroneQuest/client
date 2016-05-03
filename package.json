@@ -28,6 +28,8 @@
     "webpack-stream": "^3.2.0"
   },
   "dependencies": {
+    "angular": "^1.5.5",
+    "express": "^4.13.4",
     "fs": "0.0.2",
     "socket.io": "^1.4.5",
     "socket.io-client": "^1.4.5",
