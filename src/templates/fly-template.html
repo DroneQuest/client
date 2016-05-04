@@ -1,9 +1,11 @@
-<section ng-controller="DroneController as dronectrl" ng-keydown="dronectrl.keyPress($event)" ng-init="dronectrl.intervalCall()"  ng-keyup="dronectrl.hover($event)">
-  <img src="https://placeholdit.imgix.net/~text?txtsize=84&txt=900%C3%97500&w=900&h=500" alt="" />
-  <p>
-    this is the battery life: {{dronectrl.battery}}
-  </p>
-  <p>
-    this is current altitude: {{dronectrl.altitude}}
-  </p>
+<section ng-controller="DroneController as dronectrl"
+  ng-keydown="dronectrl.keyPress($event)"
+  ng-init="dronectrl.intervalCall()"
+  ng-keyup="dronectrl.hover($event)">
+  <div class="flight-control">
+    <div class="video">
+      <img src="../img/drone_pov.jpg"> 
+    </div> 
+    <div class="status"></div>
+  </div>
 </section>
