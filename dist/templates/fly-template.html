@@ -6,6 +6,19 @@
     <div class="video">
       <img src="../img/drone_pov.jpg"> 
     </div> 
-    <div class="status"></div>
+    <div class="status">
+      <h5>BATTERY</h5>
+      <input data-ng-class="{connected: dronectrl.getConnect()}" 
+        class="indicator"
+        id="battery"
+        data-ng-model="dronectrl.battery"
+        disabled>
+      <h5>ALTITUDE</h5>
+      <input data-ng-class="{connected: dronectrl.getConnect()}"
+        class="indicator"
+        id="altitude"
+        data-ng-model="dronectrl.altitude"
+        disabled> 
+    </div>
   </div>
 </section>

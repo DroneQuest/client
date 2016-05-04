@@ -29,6 +29,11 @@ angular.module('droneApp', ['ngRoute'])
     };
     vm.command = null;
 
+    vm.getConnect = function() {
+      if (vm.battery == null) return false;
+      return true;
+    };
+
     vm.getCommands = function() {
       $http.get('http://127.0.0.1:8080/navdata')
         .then((res) => {
