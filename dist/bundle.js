@@ -65,7 +65,7 @@
 	angular.module('droneApp', ['ngRoute'])
 	  .controller('DroneController', ['$http', '$interval', function($http, $interval) {
 	    var vm = this;
-	    var route = 'http://127.0.0.1:8080/do/';
+	    var route = 'http://127.0.0.1:3000/do/';
 	    vm.battery = null;
 	    vm.altitude = null;
 
