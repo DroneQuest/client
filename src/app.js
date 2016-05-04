@@ -75,15 +75,17 @@ angular.module('droneApp', ['ngRoute'])
   }])
 
   .controller('PanelController', ['$location', function($location) {
-    this.tab = '/fly';
-    this.isActive = function(sometab) {
-      this.tab = sometab;
+    var vm = this;
+    vm.tab = '/fly';
+    vm.isActive = function(sometab) {
+      if (vm.tab == sometab) return true;
     };
-    this.setTab = function(newtab) {
-      this.tab = newtab;
-      $location.path('/' + this.tab);
+    vm.setTab = function(newtab) {
+      vm.tab = newtab;
+      $location.path(vm.tab);
     };
   }])
+
   .directive('panelDirective', function() {
     return {
       restrict: 'E',
@@ -92,8 +94,14 @@ angular.module('droneApp', ['ngRoute'])
       templateUrl: '/templates/nav.html'
     };
   })
+
   .config(['$routeProvider', function(router) {
     router
+      .when('/', {
+        controller: 'DroneController',
+        controllerAs: 'dronectrl',
+        templateUrl: '/templates/fly-template.html'
+      })
       .when('/fly', {
         controller: 'DroneController',
         controllerAs: 'dronectrl',
