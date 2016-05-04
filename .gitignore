@@ -4,3 +4,7 @@ data
 *.swp
 .DS_Store
 test/test_bundle.js
+node-ar-drone
+dist/jquery.min.js
+dist/nodecopter-client.js
+dist/jquery.min.js
