@@ -8,7 +8,7 @@ describe('unit tests for drone control frontend', () => {
   var droneController;
   var event = {};
 
-  beforeEach(angular.mock.module('app'));
+  beforeEach(angular.mock.module('droneApp'));
   beforeEach(angular.mock.inject(function($controller) {
     droneController = $controller('DroneController');
   }));
@@ -16,8 +16,11 @@ describe('unit tests for drone control frontend', () => {
   it('should construct a controller', () => {
     expect(typeof droneController).toBe('object');
     expect(typeof droneController.codes).toBe('object');
-    expect(typeof droneController.issueCommands).toBe('function');
+    expect(typeof droneController.postCommands).toBe('function');
     expect(typeof droneController.keyPress).toBe('function');
+    expect(typeof droneController.getCommands).toBe('function');
+    expect(typeof droneController.getImg).toBe('function');
+    expect(typeof droneController.intervalCall).toBe('function');
   });
 
   describe('POST tests', () => {
@@ -168,8 +171,7 @@ describe('unit tests for drone control frontend', () => {
     it('should issue a hover command', () => {
       $httpBackend.expectPOST('http://127.0.0.1:8080/do/hover')
        .respond(200, {message: 'hover'});
-      event.keyCode = 'kk';
-      droneController.keyPress(event);
+      droneController.hover();
       $httpBackend.flush();
       expect(droneController.command).toBe('hover');
     });
