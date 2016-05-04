@@ -50,6 +50,12 @@ gulp.task('static', function() {
     .pipe(gulp.dest('dist'));
 });
 
+
+gulp.task('copy-html', () => {
+  return gulp.src('/src/**/*.html')
+    .pipe(gulp.dest('./build'));
+});
+
 gulp.task('webpack:dist', () => {
   return gulp.src('./entry.js')
     .pipe(webpack({
