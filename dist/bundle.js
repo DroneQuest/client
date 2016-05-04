@@ -63,7 +63,7 @@
 	__webpack_require__(5);
 
 	angular.module('droneApp', ['ngRoute'])
-	  .controller('DroneController', ['$http', '$interval', function($http, $interval){
+	  .controller('DroneController', ['$http', '$interval', function($http, $interval) {
 	    var vm = this;
 	    var route = 'http://127.0.0.1:8080/do/';
 	    vm.battery = null;
@@ -102,22 +102,22 @@
 	      $http.get('http://127.0.0.1:8080/imgdata')
 	        .then((res) => {
 	          console.log('GET server img res: ', res);
-	        });
+	        }, err => console.log('GET error: ', err));
 	    };
 
 	    vm.postCommands = function(path) {
 	      $http.post(route + path)
 	        .then((res) => {
 	          console.log('POST res: ', res);
-	        });
+	        }, err => console.log('GET error: ', err));
 	    };
 
-	    vm.intervalCall = function() {
+	    vm.intervalCall = function() { //GETs on a interval to update DOM info
 	      $interval(vm.getCommands, 5000);
 	      $interval(vm.getImg, 5000);
 	    };
 
-	    vm.keyPress = function(e) {
+	    vm.keyPress = function(e) { //handles key input
 	      vm.command = null;
 	      if(e.keyCode in vm.codes) {
 	        console.log(e.keyCode);
@@ -128,21 +128,22 @@
 	      }
 	    };
 
-	    vm.hover = function(e) {
+	    vm.hover = function(e) { //hovers on keyup
 	      console.log('hovering ', e);
 	      vm.postCommands('hover');
 	    };
 	  }])
 
-	  .controller('PanelController', function() {
-	    this.tab = 'fly';
+	  .controller('PanelController', ['$location', function($location) {
+	    this.tab = '/fly';
 	    this.isActive = function(sometab) {
 	      this.tab = sometab;
 	    };
 	    this.setTab = function(newtab) {
 	      this.tab = newtab;
+	      $location.path('/' + this.tab);
 	    };
-	  })
+	  }])
 	  .directive('panelDirective', function() {
 	    return {
 	      restrict: 'E',
