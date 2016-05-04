@@ -5,8 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Drone Control</title>
+    <style>
+      .ng-cloak {
+        display: none !important;
+      }
+    </style>
   </head>
-  <body>
+  <body data-ng-cloak class="ng-cloak">
     <panel-directive></panel-directive>
     <main ng-view>
     </main>

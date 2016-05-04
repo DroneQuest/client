@@ -46,7 +46,7 @@ gulp.task('mongo-stop', () => {
 });
 
 gulp.task('static', function() {
-  return gulp.src(['src/*.html', 'src/**/*.html', 'src/*.ico'])
+  return gulp.src(['src/*.html', 'src/**/*.html', 'src/**/*.jpg', 'src/*.ico'])
     .pipe(gulp.dest('dist'));
 });
 
