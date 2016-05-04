@@ -476,6 +476,7 @@
 	    };
 
 	    vm.hover = function(e) { //hovers on keyup
+	      vm.command = 'hover';
 	      console.log('hovering ', e);
 	      vm.postCommands('hover');
 	    };
