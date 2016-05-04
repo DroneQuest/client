@@ -64,8 +64,8 @@ gulp.task('webpack:dist', () => {
       },
       module: {
         loaders: [{
-          test: /\.scss$/,
-          loaders: ['style', 'css', 'sass']
+          test: /\.css$/,
+          loaders: ['style', 'css']
         }]
       }
     }))

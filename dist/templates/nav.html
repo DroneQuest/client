@@ -1,5 +1,10 @@
 <nav ng-controller="PanelController as panelctrl">
-    <a ng-click="panelctrl.setTab('fly')" ng-class="{currentTab: panelctrl.isActive('fly')}">Fly</a>
-    <a ng-click="panelctrl.setTab('docs')" ng-class="{currentTab: panelctrl.isActive('docs')}">Docs</a>
-    <a ng-click="panelctrl.setTab('faq')" ng-class="{currentTab: panelctrl.isActive('faq')}">FAQ</a>
+  <ul class="nav">
+    <li><a data-ng-click="panelctrl.setTab('fly')"
+           data-ng-class="{currentTab: panelctrl.isActive('fly')}">FLY</a></li>
+    <li><a data-ng-click="panelctrl.setTab('docs')"
+           data-ng-class="{currentTab: panelctrl.isActive('docs')}">DOCS</a></li>
+    <li><a data-ng-click="panelctrl.setTab('faq')"
+           data-ng-class="{currentTab: panelctrl.isActive('faq')}">FAQ</a></li>
+  </ul>
 </nav>
