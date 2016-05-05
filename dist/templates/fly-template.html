@@ -1,50 +1,27 @@
-<<<<<<< HEAD
 <section id="flightcontrol" tabindex="0" 
-  ng-init="dronectrl.setFocus();dronectrl.intervalCall()"
-  ng-keydown="dronectrl.keyPress($event)"
-=======
-<section ng-controller="DroneController as dronectrl"
-  ng-keydown="dronectrl.keyPress($event)"
-  ng-init="dronectrl.intervalCall()"
->>>>>>> ac30b35bfd7e2816f9e352c6e9fdc035d89e3187
-  ng-keyup="dronectrl.hover($event)">
+  data-ng-init="dronectrl.setFocus();dronectrl.intervalCall()"
+  data-ng-keydown="dronectrl.keyPress($event)"
+  data-ng-init="dronectrl.intervalCall()"
+  data-ng-keyup="dronectrl.hover($event)">
   <div class="flight-control">
     <div class="video">
-      <img src="../img/drone_pov.jpg"> 
+      <img src="../img/drone_pov.jpg" alt="mock image"> 
     </div> 
     <div class="status">
-<<<<<<< HEAD
      <h5>BATTERY</h5>
      <input class="ng-class='{{dronectrl.connected}} ? disconnected : connected'" 
-        id="battery"
-        ng-model="dronectrl.battery"
-        disabled>
-      <h5>ALTITUDE</h5>
-      <input class="ng-class='{{dronectrl.connected}} ? disconnected : connected'" 
-        id="altitude"
-        ng-model="dronectrl.altitude"
-        disabled> 
-      <h5>COMMAND</h5>
-      <input class="ng-class='{{dronectrl.connected}} ? disconnected : connected'" 
-        id="command"
-        ng-model="dronectrl.command"
-=======
-      <h5>BATTERY</h5>
-      <input data-ng-class="dronectrl.connected ? connected : disconnected" 
         id="battery"
         data-ng-model="dronectrl.battery"
         disabled>
       <h5>ALTITUDE</h5>
-      <input ng-class="dronectrl.connected ? connected : disconnected"
+      <input class="ng-class='{{dronectrl.connected}} ? disconnected : connected'" 
         id="altitude"
         data-ng-model="dronectrl.altitude"
         disabled> 
       <h5>COMMAND</h5>
-      <input ng-class="dronectrl.connected ? connected : disconnected"
+      <input class="ng-class='{{dronectrl.connected}} ? disconnected : connected'" 
         id="command"
-        data-ng-model="dronectrl.command"
->>>>>>> ac30b35bfd7e2816f9e352c6e9fdc035d89e3187
-        disabled> 
+        data-ng-model="dronectrl.command">
     </div>
   </div>
 </section>

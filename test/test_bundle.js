@@ -315,17 +315,10 @@
 	  }])
 
 	  .controller('PanelController', ['$location', function($location) {
-<<<<<<< HEAD
 	    var vm = this; 
 	    vm.tab = '/fly';
 	    vm.isActive = function(sometab) {
 	      if (vm.tab == sometab) return true; 
-=======
-	    var vm = this;
-	    vm.tab = '/fly';
-	    vm.isActive = function(sometab) {
-	      if (vm.tab == sometab) return true;
->>>>>>> ac30b35bfd7e2816f9e352c6e9fdc035d89e3187
 	    };
 	    vm.setTab = function(newtab) {
 	      vm.tab = newtab;
@@ -361,6 +354,7 @@
 	        templateUrl: '/templates/faq-template.html'
 	      });
 	  }]);
+
 
 
 /***/ },
