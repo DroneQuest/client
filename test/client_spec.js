@@ -173,7 +173,7 @@ describe('unit tests for drone control frontend', () => {
        .respond(200, {message: 'hover'});
       droneController.hover();
       $httpBackend.flush();
-      expect(droneController.command).toBe('hover');
+      expect(droneController.command).toBe('hovering');
     });
   });
 });
