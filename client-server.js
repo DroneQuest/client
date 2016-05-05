@@ -1,10 +1,11 @@
 'use strict';
 var arDrone = require('ar-drone');
-var png = require('./video-server.js')
+var http = require('http');
+var png = require('./video-server.js');
 
 const express = require('express');
 const app = express();
-console.log(png);
+console.log(png());
 app.use(express.static(__dirname + '/dist'));
 app.listen(8080, () => console.log('server started on 8080.'));
 
