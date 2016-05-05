@@ -8,24 +8,31 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DroneQuest/client.git"
+    "url": "git+https://github.com/DroneQuest/drone-client.git"
   },
-  "author": {
-    "name": "Kevin Sulonen",
-    "email": "kevin.sulonen@gmail.com"
-  },
+  "contributors": [
+    {
+      "name": "Luc Ho",
+      "email": "ho.luc13@gmail.com"
+    },
+    {
+      "name": "Kevin Sulonen",
+      "email": "kevin.sulonen@gmail.com"
+    }
+  ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/DroneQuest/client/issues"
+    "url": "https://github.com/DroneQuest/drone-client/issues"
   },
-  "homepage": "https://github.com/DroneQuest/client#readme",
+  "homepage": "https://github.com/DroneQuest/drone-client#readme",
   "dependencies": {
     "angular": "^1.5.5",
     "angular-route": "^1.5.5",
     "angular-router": "0.0.2",
     "ar-drone": "^0.3.3",
     "express": "^4.13.4",
-    "jquery": "^2.2.3"
+    "jquery": "^2.2.3",
+    "ws": "^1.1.0"
   },
   "devDependencies": {
     "angular-mocks": "^1.5.5",

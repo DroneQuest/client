@@ -46,7 +46,7 @@ gulp.task('mongo-stop', () => {
 });
 
 gulp.task('static', function() {
-  return gulp.src(['src/*.html', 'src/**/*.html', 'src/*.ico'])
+  return gulp.src(['src/*.html', 'src/**/*.html', 'src/**/*.jpg', 'src/*.ico'])
     .pipe(gulp.dest('dist'));
 });
 
@@ -64,8 +64,8 @@ gulp.task('webpack:dist', () => {
       },
       module: {
         loaders: [{
-          test: /\.scss$/,
-          loaders: ['style', 'css', 'sass']
+          test: /\.css$/,
+          loaders: ['style', 'css']
         }]
       }
     }))
