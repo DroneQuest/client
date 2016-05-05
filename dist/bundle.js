@@ -90,7 +90,7 @@
 	    vm.command = null;
 
 	    vm.getCommands = function() {
-	      $http.get('http://127.0.0.1:8080/navdata')
+	      $http.get('http://127.0.0.1:3000/navdata')
 	        .then((res) => {
 	          vm.battery = res.data['0'].battery + '%';
 	          vm.altitude = res.data['0'].altitude/1000 + 'm';
@@ -99,7 +99,7 @@
 	    };
 
 	    vm.getImg = function() {
-	      $http.get('http://127.0.0.1:8080/imgdata')
+	      $http.get('http://127.0.0.1:3000/imgdata')
 	        .then((res) => {
 	          console.log('GET server img res: ', res);
 	        }, err => console.log('GET error: ', err));
