@@ -219,7 +219,7 @@
 	       .respond(200, {message: 'hover'});
 	      droneController.hover();
 	      $httpBackend.flush();
-	      expect(droneController.command).toBe('hover');
+	      expect(droneController.command).toBe('hovering');
 	    });
 	  });
 	});
@@ -240,6 +240,7 @@
 	    vm.battery = null;
 	    vm.altitude = null;
 	    vm.png = null;
+	    vm.connected = false;
 
 	    vm.codes = {
 	      80: 'p', // PING p
@@ -261,11 +262,17 @@
 	    };
 	    vm.command = null;
 
+	    vm.setFocus = function() {
+	      var element = document.getElementById('flightcontrol');
+	      element.focus();
+	    };
+
 	    vm.getCommands = function() {
 	      $http.get('http://127.0.0.1:3000/navdata')
 	        .then((res) => {
 	          vm.battery = res.data['0'].battery + '%';
 	          vm.altitude = res.data['0'].altitude/1000 + 'm';
+	          vm.connected = true;
 	          console.log('server res: ', res);
 	        }, err => console.log('GET error: ', err));
 	    };
@@ -304,18 +311,20 @@
 
 	    vm.hover = function(e) { //hovers on keyup
 	      console.log('hovering ', e);
+	      vm.command = 'hovering';
 	      vm.postCommands('hover');
 	    };
 	  }])
 
 	  .controller('PanelController', ['$location', function($location) {
-	    this.tab = '/fly';
-	    this.isActive = function(sometab) {
-	      this.tab = sometab;
+	    var vm = this;
+	    vm.tab = '/fly';
+	    vm.isActive = function(sometab) {
+	      if (vm.tab == sometab) return true;
 	    };
 	    this.setTab = function(newtab) {
-	      this.tab = newtab;
-	      $location.path('/' + this.tab);
+	      vm.tab = newtab;
+	      $location.path('/' +this.tab);
 	    };
 	  }])
 	  .directive('panelDirective', function() {
@@ -328,6 +337,11 @@
 	  })
 	  .config(['$routeProvider', function(router) {
 	    router
+	      .when('/', {
+	        controller: 'DroneController',
+	        controllerAs: 'dronectrl',
+	        templateUrl: '/templates/fly-template.html'
+	      })
 	      .when('/fly', {
 	        controller: 'DroneController',
 	        controllerAs: 'dronectrl',

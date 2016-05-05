@@ -80,10 +80,10 @@
 
 	exports = module.exports = __webpack_require__(3)();
 	// imports
-	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Raleway:400,400italic,700italic,700);", ""]);
+	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Raleway:400,600,700,700italic);", ""]);
 
 	// module
-	exports.push([module.id, "body {\n  margin: 0;\n  padding: 0;\n  font-family: 'Raleway', sans-serif;\n  color: #fff;\n  background: #696969; \n}\n\nnav {\n  font-weight: 700;\n  box-shadow: 0em 0.4em 0.6em 0.1em #111;\n}\n\nnav ul {\n  list-style-type: none;\n  margin: 0;\n  padding: 0;\n  overflow: hidden;\n  background-color: #333;\n}\n\nnav li {\n  float: left;\n}\n\nnav li a {\n  display: block;\n  color: white;\n  text-align: center;\n  padding: 14px 16px;\n  text-decoration: none;\n}\n\nnav a:hover {\n  background-color: #111;\n}\n\n.active {\n  background-color:#000;\n}\n\n.logo {\n  font-style: italic;\n  font-size: 1.8em;\n  display: inline-block;\n  float: right;\n  margin-top: -1.4em;\n  margin-right: 6em;\n}\n\nmain {\n  width: 90%;\n  margin: 3em auto;\n}\n\n.flight-control {\n  margin: auto;\n  width: 100%;\n  display: flex;\n  height: 500px;\n}\n\n.video {\n  height: 500px;\n  width: 75%;\n}\n\n.video img {\n  height: 100%;\n  width: 100%;\n}\n\n.status {\n  box-sizing: border-box;\n  border-radius: 5px;\n  text-align: center;\n  height: 500px;\n  width: 24%;\n  border: 3px solid #333;\n  margin-left: 1%;\n}\n\n.status h5 {\n  margin-bottom: 0.1em;\n  font-size: 0.7em;\n  font-weight: 700;\n}\n\n.status input {\n  background: #ff0000;\n  text-align: center;\n  border-radius: 5px;\n}\n\n.connected {\n  background: #00ff00;\n}\n\n", ""]);
+	exports.push([module.id, "body {\n  margin: 0;\n  padding: 0;\n  font-family: 'Raleway', sans-serif;\n  color: #fff;\n  background: #696969; \n}\n\nsection:focus {\n  outline: none;\n}\n\nnav {\n  font-weight: 700;\n  box-shadow: 0em 0.4em 0.6em 0.1em #111;\n}\n\nnav ul {\n  list-style-type: none;\n  margin: 0;\n  padding: 0;\n  overflow: hidden;\n  background-color: #333;\n}\n\nnav li {\n  float: left;\n}\n\nnav li a {\n  display: block;\n  color: white;\n  text-align: center;\n  padding: 14px 16px;\n  text-decoration: none;\n}\n\nnav a:hover {\n  background-color: #111;\n}\n\n.active {\n  background-color:#000;\n}\n\n.logo {\n  font-style: italic;\n  font-size: 1.8em;\n  display: inline-block;\n  float: right;\n  margin-top: -1.4em;\n  margin-right: 6em;\n}\n\nmain {\n  width: 90%;\n  margin: 3em auto;\n}\n\n.flight-control {\n  margin: auto;\n  width: 100%;\n  display: flex;\n  height: 500px;\n}\n\n.video {\n  height: 500px;\n  width: 75%;\n}\n\n.video img {\n  height: 100%;\n  width: 100%;\n}\n\n.status {\n  box-sizing: border-box;\n  text-align: center;\n  height: 500px;\n  width: 24%;\n  background-image:\n    linear-gradient(\n      170deg,\n      #333, #696969 80%, #333 \n    );\n  border-radius: 5px;\n  margin-left: 1%;\n}\n\n.status h5 {\n  margin-bottom: 0.5em;\n  font-size: 0.8em;\n  font-weight: 700;\n}\n\n.disconnected {\n  background: #ff0000;\n  height: 2em;\n  color: #fff;\n  text-align: center;\n  font-size: 0.8em;\n  font-weight: 600;\n  border: 2px solid #333;\n  border-radius: 3px;\n}\n\n.connected {\n  background: #00ff00;\n  height: 2em;\n  color: #fff;\n  text-align: center;\n  font-size: 0.8em;\n  font-weight: 600;\n  border: 2px solid #333;\n  border-radius: 5px;\n}\n\n", ""]);
 
 	// exports
 
@@ -411,6 +411,7 @@
 	    vm.battery = null;
 	    vm.altitude = null;
 	    vm.png = null;
+	    vm.connected = false;
 
 	    vm.codes = {
 	      80: 'p', // PING p
@@ -432,11 +433,17 @@
 	    };
 	    vm.command = null;
 
+	    vm.setFocus = function() {
+	      var element = document.getElementById('flightcontrol');
+	      element.focus();
+	    };
+
 	    vm.getCommands = function() {
 	      $http.get('http://127.0.0.1:3000/navdata')
 	        .then((res) => {
 	          vm.battery = res.data['0'].battery + '%';
 	          vm.altitude = res.data['0'].altitude/1000 + 'm';
+	          vm.connected = true;
 	          console.log('server res: ', res);
 	        }, err => console.log('GET error: ', err));
 	    };
@@ -475,18 +482,20 @@
 
 	    vm.hover = function(e) { //hovers on keyup
 	      console.log('hovering ', e);
+	      vm.command = 'hovering';
 	      vm.postCommands('hover');
 	    };
 	  }])
 
 	  .controller('PanelController', ['$location', function($location) {
-	    this.tab = '/fly';
-	    this.isActive = function(sometab) {
-	      this.tab = sometab;
+	    var vm = this;
+	    vm.tab = '/fly';
+	    vm.isActive = function(sometab) {
+	      if (vm.tab == sometab) return true;
 	    };
 	    this.setTab = function(newtab) {
-	      this.tab = newtab;
-	      $location.path('/' + this.tab);
+	      vm.tab = newtab;
+	      $location.path('/' +this.tab);
 	    };
 	  }])
 	  .directive('panelDirective', function() {
@@ -499,6 +508,11 @@
 	  })
 	  .config(['$routeProvider', function(router) {
 	    router
+	      .when('/', {
+	        controller: 'DroneController',
+	        controllerAs: 'dronectrl',
+	        templateUrl: '/templates/fly-template.html'
+	      })
 	      .when('/fly', {
 	        controller: 'DroneController',
 	        controllerAs: 'dronectrl',
