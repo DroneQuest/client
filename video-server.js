@@ -9,7 +9,6 @@ pngStream
 .on('error', console.log)
 .on('data', function(pngBuffer) {
   lastPng = pngBuffer;
-  console.log(lastPng);
 });
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:8080');
@@ -23,7 +22,6 @@ app.get('/', function(req, res) {
     res.end('Did not receive any png data yet.');
     return;
   }
-  console.log(lastPng);
   res.writeHead(200, {'Content-Type': 'image/png'});
   res.end(lastPng);
 });

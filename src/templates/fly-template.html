@@ -20,6 +20,6 @@
         data-ng-model="dronectrl.altitude"
         disabled>
     </div>
-    <img ng-src="data:image/JPEG;base64,{{image}}" | $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|file|ftp|blob):|data:image\//)>
+    <img ng-src="data:image/PNG;base64,{{image}}" | $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|file|ftp|blob):|data:image\//)>
   </div>
 </section>
