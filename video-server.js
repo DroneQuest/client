@@ -1,6 +1,6 @@
 'use strict';
-// var express = require('express');
-// var app = express();
+var express = require('express');
+var app = express();
 // require('http').createServer(app);
 //
 // app.use(express.static(__dirname + '/dist'));
@@ -11,7 +11,7 @@
 
 //PNG worked on munir's computer
 var arDrone = require('ar-drone');
-var http    = require('http');
+// var http    = require('http');
 module.exports = function() {
   var pngStream = arDrone.createClient().getPngStream();
   var lastPng;
@@ -21,7 +21,7 @@ module.exports = function() {
     lastPng = pngBuffer;
   });
 
-  var server = http.createServer(function(req, res) {
+  app.post(function(req, res) {
     if (!lastPng) {
       res.writeHead(503);
       res.end('Did not receive any png data yet.');
@@ -32,7 +32,8 @@ module.exports = function() {
     res.end(lastPng);
   });
 
-  server.listen(8081, function() {
+
+  app.listen(8081, function() {
     console.log('Serving latest png on port 8081 ...');
   });
 };
