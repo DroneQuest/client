@@ -90,7 +90,7 @@ angular.module('droneApp', ['ngRoute'])
     };
     this.setTab = function(newtab) {
       vm.tab = newtab;
-      $location.path('/' + this.tab);
+      $location.path(this.tab);
     };
   }])
   .directive('panelDirective', function() {
