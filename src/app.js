@@ -30,6 +30,11 @@ angular.module('droneApp', ['ngRoute'])
     };
     vm.command = null;
 
+    vm.setFocus = function() {
+      var element = document.getElementById('flightcontrol');
+      element.focus();
+    };
+
     vm.getCommands = function() {
       $http.get('http://127.0.0.1:8080/navdata')
         .then((res) => {
@@ -72,17 +77,19 @@ angular.module('droneApp', ['ngRoute'])
 
     vm.hover = function(e) { //hovers on keyup
       console.log('hovering ', e);
+      vm.command = 'hovering';
       vm.postCommands('hover');
     };
   }])
 
   .controller('PanelController', ['$location', function($location) {
-    this.tab = '/fly';
-    this.isActive = function(sometab) {
-      this.tab = sometab;
+    var vm = this; 
+    vm.tab = '/fly';
+    vm.isActive = function(sometab) {
+      if (vm.tab == sometab) return true; 
     };
     this.setTab = function(newtab) {
-      this.tab = newtab;
+      vm.tab = newtab;
       $location.path('/' + this.tab);
     };
   }])
@@ -108,3 +115,4 @@ angular.module('droneApp', ['ngRoute'])
         templateUrl: '/templates/faq-template.html'
       });
   }]);
+

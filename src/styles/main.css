@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway:400,400italic,700italic,700');
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,600,700,700italic');
 
 body {
   margin: 0;
@@ -6,6 +6,10 @@ body {
   font-family: 'Raleway', sans-serif;
   color: #fff;
   background: #696969; 
+}
+
+section:focus {
+  outline: none;
 }
 
 nav {
@@ -74,29 +78,43 @@ main {
 
 .status {
   box-sizing: border-box;
-  border-radius: 5px;
   text-align: center;
   height: 500px;
   width: 24%;
-  border: 3px solid #333;
+  background-image:
+    linear-gradient(
+      170deg,
+      #333, #696969 80%, #333 
+    );
+  border-radius: 5px;
   margin-left: 1%;
 }
 
 .status h5 {
-  margin-bottom: 0.1em;
-  font-size: 0.7em;
+  margin-bottom: 0.5em;
+  font-size: 0.8em;
   font-weight: 700;
 }
 
 .disconnected {
   background: #ff0000;
+  height: 2em;
+  color: #fff;
   text-align: center;
-  border-radius: 5px;
+  font-size: 0.8em;
+  font-weight: 600;
+  border: none;
+  border-radius: 3px;
 }
 
 .connected {
   background: #00ff00;
+  height: 2em;
+  color: #fff;
   text-align: center;
+  font-size: 0.8em;
+  font-weight: 600;
+  border: none;
   border-radius: 5px;
 }
 
