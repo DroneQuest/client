@@ -4,3 +4,4 @@ data
 *.swp
 .DS_Store
 test/test_bundle.js
+node-ar-drone

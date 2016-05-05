@@ -431,11 +431,6 @@
 	    };
 	    vm.command = null;
 
-	    vm.getConnect = function() {
-	      if (vm.battery == null) return false;
-	      return true;
-	    };
-
 	    vm.getCommands = function() {
 	      $http.get('http://127.0.0.1:8080/navdata')
 	        .then((res) => {
@@ -476,24 +471,21 @@
 	    };
 
 	    vm.hover = function(e) { //hovers on keyup
-	      vm.command = 'hover';
 	      console.log('hovering ', e);
 	      vm.postCommands('hover');
 	    };
 	  }])
 
 	  .controller('PanelController', ['$location', function($location) {
-	    var vm = this;
-	    vm.tab = '/fly';
-	    vm.isActive = function(sometab) {
-	      if (vm.tab == sometab) return true;
+	    this.tab = '/fly';
+	    this.isActive = function(sometab) {
+	      this.tab = sometab;
 	    };
-	    vm.setTab = function(newtab) {
-	      vm.tab = newtab;
-	      $location.path(vm.tab);
+	    this.setTab = function(newtab) {
+	      this.tab = newtab;
+	      $location.path('/' + this.tab);
 	    };
 	  }])
-
 	  .directive('panelDirective', function() {
 	    return {
 	      restrict: 'E',
@@ -502,14 +494,8 @@
 	      templateUrl: '/templates/nav.html'
 	    };
 	  })
-
 	  .config(['$routeProvider', function(router) {
 	    router
-	      .when('/', {
-	        controller: 'DroneController',
-	        controllerAs: 'dronectrl',
-	        templateUrl: '/templates/fly-template.html'
-	      })
 	      .when('/fly', {
 	        controller: 'DroneController',
 	        controllerAs: 'dronectrl',
