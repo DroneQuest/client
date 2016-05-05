@@ -13,7 +13,7 @@
 var arDrone = require('ar-drone');
 // var http    = require('http');
 // var lastPng;
-var stream = function(){
+var stream = (function(){
 
   var pngStream = arDrone.createClient().getPngStream();
 
@@ -24,7 +24,7 @@ var stream = function(){
     lastPng = pngBuffer;
   });
   return lastPng;
-};
+})();
 module.exports = stream;
 //
 // var server = http.createServer(function(req, res) {
