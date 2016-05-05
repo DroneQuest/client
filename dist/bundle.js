@@ -407,7 +407,7 @@
 	angular.module('droneApp', ['ngRoute'])
 	  .controller('DroneController', ['$http', '$interval', function($http, $interval) {
 	    var vm = this;
-	    var route = 'http://127.0.0.1:3000/do/';
+	    var route = 'http://127.0.0.1:3000/do';
 	    vm.battery = null;
 	    vm.altitude = null;
 
@@ -441,7 +441,7 @@
 	    };
 
 	    vm.getImg = function() {
-	      $http.get('http://127.0.0.1:8081/getvideo')
+	      $http.get('http://127.0.0.1:8081/do/getvideo')
 	        .then((res) => {
 	          console.log('GET server img res: ', res);
 	        }, err => console.log('GET error: ', err));
