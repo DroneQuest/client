@@ -5,7 +5,7 @@ require('angular-route');
 angular.module('droneApp', ['ngRoute'])
   .controller('DroneController', ['$http', '$interval', function($http, $interval) {
     var vm = this;
-    var route = 'http://127.0.0.1:3000/do';
+    var route = 'http://127.0.0.1:3000/do/';
     vm.battery = null;
     vm.altitude = null;
     vm.png = null;
@@ -93,7 +93,7 @@ angular.module('droneApp', ['ngRoute'])
     };
     this.setTab = function(newtab) {
       vm.tab = newtab;
-      $location.path('/' +this.tab);
+      $location.path(this.tab);
     };
   }])
   .directive('panelDirective', function() {
