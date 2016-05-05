@@ -8,6 +8,7 @@ angular.module('droneApp', ['ngRoute'])
     var route = 'http://127.0.0.1:8080/do/';
     vm.battery = null;
     vm.altitude = null;
+    vm.connected = false;
 
     vm.codes = {
       80: 'p', // PING p
@@ -29,16 +30,12 @@ angular.module('droneApp', ['ngRoute'])
     };
     vm.command = null;
 
-    vm.getConnect = function() {
-      if (vm.battery == null) return false;
-      return true;
-    };
-
     vm.getCommands = function() {
       $http.get('http://127.0.0.1:8080/navdata')
         .then((res) => {
           vm.battery = res.data['0'].battery + '%';
           vm.altitude = res.data['0'].altitude/1000 + 'm';
+          vm.connected = true;
           console.log('server res: ', res);
         }, err => console.log('GET error: ', err));
     };

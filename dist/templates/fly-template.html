@@ -8,17 +8,21 @@
     </div> 
     <div class="status">
       <h5>BATTERY</h5>
-      <input data-ng-class="{connected: dronectrl.getConnect()}" 
-        class="indicator"
+      <input data-ng-class="dronectrl.connected ? connected : disconnected" 
         id="battery"
         data-ng-model="dronectrl.battery"
         disabled>
       <h5>ALTITUDE</h5>
-      <input data-ng-class="{connected: dronectrl.getConnect()}"
-        class="indicator"
+      <input ng-class="dronectrl.connected ? connected : disconnected"
         id="altitude"
         data-ng-model="dronectrl.altitude"
+        disabled> 
+      <h5>COMMAND</h5>
+      <input ng-class="dronectrl.connected ? connected : disconnected"
+        id="command"
+        data-ng-model="dronectrl.command"
         disabled> 
     </div>
   </div>
 </section>
+
