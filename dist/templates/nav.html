@@ -1,10 +1,10 @@
 <nav ng-controller="PanelController as panelctrl">
   <ul class="nav">
-    <li data-ng-class="{active: panelctrl.isActive('/fly')}">
+    <li data-ng-class="{active: panelctrl.isActive('fly')}">
       <a data-ng-click="panelctrl.setTab('/fly')">FLY</a></li>
-    <li data-ng-class="{active: panelctrl.isActive('/docs')}">
+    <li data-ng-class="{active: panelctrl.isActive('docs')}">
       <a data-ng-click="panelctrl.setTab('/docs')">DOCS</a></li>
-    <li data-ng-class="{active: panelctrl.isActive('/faq')}">
+    <li data-ng-class="{active: panelctrl.isActive('faq')}">
       <a data-ng-click="panelctrl.setTab('/faq')">FAQ</a></li>
   </ul>
   <div class="logo">Drone Quest</div>

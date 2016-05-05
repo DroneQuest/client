@@ -407,9 +407,10 @@
 	angular.module('droneApp', ['ngRoute'])
 	  .controller('DroneController', ['$http', '$interval', function($http, $interval) {
 	    var vm = this;
-	    var route = 'http://127.0.0.1:8080/do/';
+	    var route = 'http://127.0.0.1:3000/do';
 	    vm.battery = null;
 	    vm.altitude = null;
+	    vm.png = null;
 	    vm.connected = false;
 
 	    vm.codes = {
@@ -438,7 +439,7 @@
 	    };
 
 	    vm.getCommands = function() {
-	      $http.get('http://127.0.0.1:8080/navdata')
+	      $http.get('http://127.0.0.1:3000/navdata')
 	        .then((res) => {
 	          vm.battery = res.data['0'].battery + '%';
 	          vm.altitude = res.data['0'].altitude/1000 + 'm';
@@ -448,9 +449,11 @@
 	    };
 
 	    vm.getImg = function() {
-	      $http.get('http://127.0.0.1:8080/imgdata')
+	      $http.get('http://127.0.0.1:8081/')
 	        .then((res) => {
-	          console.log('GET server img res: ', res);
+	          vm.png = res.data.Image;
+	          // var png = getElementById('pngStream');
+
 	        }, err => console.log('GET error: ', err));
 	    };
 
@@ -485,14 +488,14 @@
 	  }])
 
 	  .controller('PanelController', ['$location', function($location) {
-	    var vm = this; 
+	    var vm = this;
 	    vm.tab = '/fly';
 	    vm.isActive = function(sometab) {
-	      if (vm.tab == sometab) return true; 
+	      if (vm.tab == sometab) return true;
 	    };
 	    this.setTab = function(newtab) {
 	      vm.tab = newtab;
-	      $location.path(this.tab);
+	      $location.path('/' +this.tab);
 	    };
 	  }])
 	  .directive('panelDirective', function() {
@@ -522,7 +525,6 @@
 	        templateUrl: '/templates/faq-template.html'
 	      });
 	  }]);
-
 
 
 /***/ },

@@ -1,28 +1,27 @@
-<section id="flightcontrol" tabindex="0" 
+<section id="flightcontrol" tabindex="0"
   data-ng-init="dronectrl.setFocus();dronectrl.intervalCall()"
   data-ng-keydown="dronectrl.keyPress($event)"
   data-ng-init="dronectrl.intervalCall()"
   data-ng-keyup="dronectrl.hover($event)">
   <div class="flight-control">
     <div class="video">
-      <img src="../img/drone_pov.jpg" alt="mock image"> 
-    </div> 
+      <img ng-src="data:image/PNG;base64,{{dronectrl.image}}" | $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|file|ftp|blob):|data:image\//)>
+    </div>
     <div class="status">
      <h5>BATTERY</h5>
-     <input class="ng-class='{{dronectrl.connected}} ? disconnected : connected'" 
+     <input class="ng-class='{{dronectrl.connected}} ? disconnected : connected'"
         id="battery"
         data-ng-model="dronectrl.battery"
         disabled>
       <h5>ALTITUDE</h5>
-      <input class="ng-class='{{dronectrl.connected}} ? disconnected : connected'" 
+      <input class="ng-class='{{dronectrl.connected}} ? disconnected : connected'"
         id="altitude"
         data-ng-model="dronectrl.altitude"
-        disabled> 
+        disabled>
       <h5>COMMAND</h5>
-      <input class="ng-class='{{dronectrl.connected}} ? disconnected : connected'" 
+      <input class="ng-class='{{dronectrl.connected}} ? disconnected : connected'"
         id="command"
         data-ng-model="dronectrl.command">
     </div>
   </div>
 </section>
-
