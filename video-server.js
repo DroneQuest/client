@@ -21,7 +21,7 @@ module.exports = function() {
     lastPng = pngBuffer;
   });
 
-  app.post('http://127.0.0.1/do/getvideo', function(req, res) {
+  app.get('http://127.0.0.1:8081/do/getvideo', function(req, res) {
     if (!lastPng) {
       res.writeHead(503);
       res.end('Did not receive any png data yet.');

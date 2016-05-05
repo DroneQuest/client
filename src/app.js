@@ -39,7 +39,7 @@ angular.module('droneApp', ['ngRoute'])
     };
 
     vm.getImg = function() {
-      $http.get('http://127.0.0.1:3000/imgdata')
+      $http.get('http://127.0.0.1:8081/getvideo')
         .then((res) => {
           console.log('GET server img res: ', res);
         }, err => console.log('GET error: ', err));
