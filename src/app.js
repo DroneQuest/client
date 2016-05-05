@@ -76,7 +76,6 @@ angular.module('droneApp', ['ngRoute'])
     };
 
     vm.hover = function(e) { //hovers on keyup
-      vm.command = 'hover';
       console.log('hovering ', e);
       vm.command = 'hovering';
       vm.postCommands('hover');
@@ -89,12 +88,11 @@ angular.module('droneApp', ['ngRoute'])
     vm.isActive = function(sometab) {
       if (vm.tab == sometab) return true; 
     };
-    vm.setTab = function(newtab) {
+    this.setTab = function(newtab) {
       vm.tab = newtab;
-      $location.path(vm.tab);
+      $location.path('/' + this.tab);
     };
   }])
-
   .directive('panelDirective', function() {
     return {
       restrict: 'E',
@@ -103,14 +101,8 @@ angular.module('droneApp', ['ngRoute'])
       templateUrl: '/templates/nav.html'
     };
   })
-
   .config(['$routeProvider', function(router) {
     router
-      .when('/', {
-        controller: 'DroneController',
-        controllerAs: 'dronectrl',
-        templateUrl: '/templates/fly-template.html'
-      })
       .when('/fly', {
         controller: 'DroneController',
         controllerAs: 'dronectrl',
