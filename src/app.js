@@ -8,6 +8,7 @@ angular.module('droneApp', ['ngRoute'])
     var route = 'http://127.0.0.1:3000/do';
     vm.battery = null;
     vm.altitude = null;
+    vm.png = null;
 
     vm.codes = {
       80: 'p', // PING p
@@ -41,7 +42,9 @@ angular.module('droneApp', ['ngRoute'])
     vm.getImg = function() {
       $http.get('http://127.0.0.1:8081/')
         .then((res) => {
-          console.log('GET server img res: ', res);
+          vm.png = res.data.Image;
+          // var png = getElementById('pngStream');
+
         }, err => console.log('GET error: ', err));
     };
 

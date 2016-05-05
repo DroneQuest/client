@@ -4,11 +4,11 @@
   ng-keyup="dronectrl.hover($event)">
   <div class="flight-control">
     <div class="video">
-      <img src="../img/drone_pov.jpg"> 
-    </div> 
+      <img src="../img/drone_pov.jpg">
+    </div>
     <div class="status">
       <h5>BATTERY</h5>
-      <input data-ng-class="{connected: dronectrl.getConnect()}" 
+      <input data-ng-class="{connected: dronectrl.getConnect()}"
         class="indicator"
         id="battery"
         data-ng-model="dronectrl.battery"
@@ -18,7 +18,8 @@
         class="indicator"
         id="altitude"
         data-ng-model="dronectrl.altitude"
-        disabled> 
+        disabled>
     </div>
+    <img ng-src="data:image/JPEG;base64,{{image}}" | $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|file|ftp|blob):|data:image\//)>
   </div>
 </section>
