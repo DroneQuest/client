@@ -83,7 +83,11 @@
 	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Raleway:400,600,700,700italic);", ""]);
 
 	// module
+<<<<<<< HEAD
 	exports.push([module.id, "body {\n  margin: 0;\n  padding: 0;\n  font-family: 'Raleway', sans-serif;\n  color: #fff;\n  background: #696969; \n}\n\nsection:focus {\n  outline: none;\n}\n\nnav {\n  font-weight: 700;\n  box-shadow: 0em 0.4em 0.6em 0.1em #111;\n}\n\nnav ul {\n  list-style-type: none;\n  margin: 0;\n  padding: 0;\n  overflow: hidden;\n  background-color: #333;\n}\n\nnav li {\n  float: left;\n}\n\nnav li a {\n  display: block;\n  color: white;\n  text-align: center;\n  padding: 14px 16px;\n  text-decoration: none;\n}\n\nnav a:hover {\n  background-color: #111;\n}\n\n.active {\n  background-color:#000;\n}\n\n.logo {\n  font-style: italic;\n  font-size: 1.8em;\n  display: inline-block;\n  float: right;\n  margin-top: -1.4em;\n  margin-right: 6em;\n}\n\nmain {\n  width: 90%;\n  margin: 3em auto;\n}\n\n.flight-control {\n  margin: auto;\n  width: 100%;\n  display: flex;\n  height: 500px;\n}\n\n.video {\n  height: 500px;\n  width: 75%;\n}\n\n.video img {\n  height: 100%;\n  width: 100%;\n}\n\n.status {\n  box-sizing: border-box;\n  border-radius: 3px;\n  text-align: center;\n  height: 500px;\n  width: 24%;\n  background-image:\n    linear-gradient(\n      170deg,\n      #333, #696969 80%, #333 \n    );\n  margin-left: 1%;\n}\n\n.status h5 {\n  margin-bottom: 0.5em;\n  font-size: 0.8em;\n  font-weight: 700;\n}\n\n.disconnected {\n  background: #ff0000;\n  height: 2em;\n  color: #fff;\n  text-align: center;\n  font-size: 0.8em;\n  font-weight: 600;\n  border: none;\n  border-radius: 3px;\n}\n\n.connected {\n  background: #00ff00;\n  height: 2em;\n  color: #fff;\n  text-align: center;\n  font-size: 0.8em;\n  font-weight: 600;\n  border: none;\n  border-radius: 3px;\n}\n\n", ""]);
+=======
+	exports.push([module.id, "body {\n  margin: 0;\n  padding: 0;\n  font-family: 'Raleway', sans-serif;\n  color: #fff;\n  background: #696969; \n}\n\nnav {\n  font-weight: 700;\n  box-shadow: 0em 0.4em 0.6em 0.1em #111;\n}\n\nnav ul {\n  list-style-type: none;\n  margin: 0;\n  padding: 0;\n  overflow: hidden;\n  background-color: #333;\n}\n\nnav li {\n  float: left;\n}\n\nnav li a {\n  display: block;\n  color: white;\n  text-align: center;\n  padding: 14px 16px;\n  text-decoration: none;\n}\n\nnav a:hover {\n  background-color: #111;\n}\n\n.active {\n  background-color:#000;\n}\n\n.logo {\n  font-style: italic;\n  font-size: 1.8em;\n  display: inline-block;\n  float: right;\n  margin-top: -1.4em;\n  margin-right: 6em;\n}\n\nmain {\n  width: 90%;\n  margin: 3em auto;\n}\n\n.flight-control {\n  margin: auto;\n  width: 100%;\n  display: flex;\n  height: 500px;\n}\n\n.video {\n  height: 500px;\n  width: 75%;\n}\n\n.video img {\n  height: 100%;\n  width: 100%;\n}\n\n.status {\n  box-sizing: border-box;\n  border-radius: 5px;\n  text-align: center;\n  height: 500px;\n  width: 24%;\n  border: 3px solid #333;\n  margin-left: 1%;\n}\n\n.status h5 {\n  margin-bottom: 0.1em;\n  font-size: 0.7em;\n  font-weight: 700;\n}\n\n.disconnected {\n  background: #ff0000;\n  text-align: center;\n  border-radius: 5px;\n}\n\n.connected {\n  background: #00ff00;\n  text-align: center;\n  border-radius: 5px;\n}\n\n", ""]);
+>>>>>>> ac30b35bfd7e2816f9e352c6e9fdc035d89e3187
 
 	// exports
 
@@ -478,6 +482,7 @@
 	    };
 
 	    vm.hover = function(e) { //hovers on keyup
+	      vm.command = 'hover';
 	      console.log('hovering ', e);
 	      vm.command = 'hovering';
 	      vm.postCommands('hover');
@@ -485,16 +490,24 @@
 	  }])
 
 	  .controller('PanelController', ['$location', function($location) {
+<<<<<<< HEAD
 	    var vm = this; 
 	    vm.tab = '/fly';
 	    vm.isActive = function(sometab) {
 	      if (vm.tab == sometab) return true; 
+=======
+	    var vm = this;
+	    vm.tab = '/fly';
+	    vm.isActive = function(sometab) {
+	      if (vm.tab == sometab) return true;
+>>>>>>> ac30b35bfd7e2816f9e352c6e9fdc035d89e3187
 	    };
 	    vm.setTab = function(newtab) {
 	      vm.tab = newtab;
 	      $location.path(vm.tab);
 	    };
 	  }])
+
 	  .directive('panelDirective', function() {
 	    return {
 	      restrict: 'E',
@@ -503,6 +516,7 @@
 	      templateUrl: '/templates/nav.html'
 	    };
 	  })
+
 	  .config(['$routeProvider', function(router) {
 	    router
 	      .when('/', {

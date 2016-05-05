@@ -1,12 +1,19 @@
+<<<<<<< HEAD
 <section id="flightcontrol" tabindex="0" 
   ng-init="dronectrl.setFocus();dronectrl.intervalCall()"
   ng-keydown="dronectrl.keyPress($event)"
+=======
+<section ng-controller="DroneController as dronectrl"
+  ng-keydown="dronectrl.keyPress($event)"
+  ng-init="dronectrl.intervalCall()"
+>>>>>>> ac30b35bfd7e2816f9e352c6e9fdc035d89e3187
   ng-keyup="dronectrl.hover($event)">
   <div class="flight-control">
     <div class="video">
       <img src="../img/drone_pov.jpg"> 
     </div> 
     <div class="status">
+<<<<<<< HEAD
      <h5>BATTERY</h5>
      <input class="ng-class='{{dronectrl.connected}} ? disconnected : connected'" 
         id="battery"
@@ -21,6 +28,22 @@
       <input class="ng-class='{{dronectrl.connected}} ? disconnected : connected'" 
         id="command"
         ng-model="dronectrl.command"
+=======
+      <h5>BATTERY</h5>
+      <input data-ng-class="dronectrl.connected ? connected : disconnected" 
+        id="battery"
+        data-ng-model="dronectrl.battery"
+        disabled>
+      <h5>ALTITUDE</h5>
+      <input ng-class="dronectrl.connected ? connected : disconnected"
+        id="altitude"
+        data-ng-model="dronectrl.altitude"
+        disabled> 
+      <h5>COMMAND</h5>
+      <input ng-class="dronectrl.connected ? connected : disconnected"
+        id="command"
+        data-ng-model="dronectrl.command"
+>>>>>>> ac30b35bfd7e2816f9e352c6e9fdc035d89e3187
         disabled> 
     </div>
   </div>
