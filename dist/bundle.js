@@ -505,6 +505,11 @@
 	  })
 	  .config(['$routeProvider', function(router) {
 	    router
+	      .when('/', {
+	        controller: 'DroneController',
+	        controllerAs: 'dronectrl',
+	        templateUrl: '/templates/fly-template.html'
+	      })
 	      .when('/fly', {
 	        controller: 'DroneController',
 	        controllerAs: 'dronectrl',
