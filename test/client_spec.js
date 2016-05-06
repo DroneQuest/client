@@ -13,7 +13,7 @@ describe('unit tests for drone control frontend', () => {
     droneController = $controller('DroneController');
   }));
 
-  it('should construct a controller', () => {
+  it('should construct a controller.', () => {
     expect(typeof droneController).toBe('object');
     expect(typeof droneController.codes).toBe('object');
     expect(typeof droneController.postCommands).toBe('function');
@@ -34,7 +34,7 @@ describe('unit tests for drone control frontend', () => {
     });
 
     it('should issue a takeoff command', () => {
-      $httpBackend.expectPOST('http://127.0.0.1:8080/do/takeoff')
+      $httpBackend.expectPOST('http://127.0.0.1:3000/do/takeoff')
        .respond(200, {message: 'takeoff'});
       event.keyCode = 13;
       droneController.keyPress(event);
@@ -43,16 +43,17 @@ describe('unit tests for drone control frontend', () => {
     });
 
     it('should issue a land command', () => {
-      $httpBackend.expectPOST('http://127.0.0.1:8080/do/land')
+      $httpBackend.expectPOST('http://127.0.0.1:3000/do/land')
        .respond(200, {message: 'land'});
       event.keyCode = 32;
       droneController.keyPress(event);
       $httpBackend.flush();
       expect(droneController.command).toBe('land');
+
     });
 
     it('should issue a move_left command', () => {
-      $httpBackend.expectPOST('http://127.0.0.1:8080/do/move_left')
+      $httpBackend.expectPOST('http://127.0.0.1:3000/do/move_left')
        .respond(200, {message: 'move_left'});
       event.keyCode = 65;
       droneController.keyPress(event);
@@ -61,7 +62,7 @@ describe('unit tests for drone control frontend', () => {
     });
 
     it('should issue a move_right command', () => {
-      $httpBackend.expectPOST('http://127.0.0.1:8080/do/move_right')
+      $httpBackend.expectPOST('http://127.0.0.1:3000/do/move_right')
        .respond(200, {message: 'move_right'});
       event.keyCode = 68;
       droneController.keyPress(event);
@@ -70,7 +71,7 @@ describe('unit tests for drone control frontend', () => {
     });
 
     it('should issue a move_up command', () => {
-      $httpBackend.expectPOST('http://127.0.0.1:8080/do/move_up')
+      $httpBackend.expectPOST('http://127.0.0.1:3000/do/move_up')
        .respond(200, {message: 'move_up'});
       event.keyCode = 38;
       droneController.keyPress(event);
@@ -79,7 +80,7 @@ describe('unit tests for drone control frontend', () => {
     });
 
     it('should issue a move_down command', () => {
-      $httpBackend.expectPOST('http://127.0.0.1:8080/do/move_down')
+      $httpBackend.expectPOST('http://127.0.0.1:3000/do/move_down')
        .respond(200, {message: 'move_down'});
       event.keyCode = 40;
       droneController.keyPress(event);
@@ -88,7 +89,7 @@ describe('unit tests for drone control frontend', () => {
     });
 
     it('should issue a move_forward command', () => {
-      $httpBackend.expectPOST('http://127.0.0.1:8080/do/move_forward')
+      $httpBackend.expectPOST('http://127.0.0.1:3000/do/move_forward')
        .respond(200, {message: 'move_forward'});
       event.keyCode = 87;
       droneController.keyPress(event);
@@ -97,7 +98,7 @@ describe('unit tests for drone control frontend', () => {
     });
 
     it('should issue a move_backward command', () => {
-      $httpBackend.expectPOST('http://127.0.0.1:8080/do/move_backward')
+      $httpBackend.expectPOST('http://127.0.0.1:3000/do/move_backward')
        .respond(200, {message: 'move_backward'});
       event.keyCode = 83;
       droneController.keyPress(event);
@@ -106,7 +107,7 @@ describe('unit tests for drone control frontend', () => {
     });
 
     it('should issue a turn_left command', () => {
-      $httpBackend.expectPOST('http://127.0.0.1:8080/do/turn_left')
+      $httpBackend.expectPOST('http://127.0.0.1:3000/do/turn_left')
        .respond(200, {message: 'turn_left'});
       event.keyCode = 37;
       droneController.keyPress(event);
@@ -115,7 +116,7 @@ describe('unit tests for drone control frontend', () => {
     });
 
     it('should issue a turn_right command', () => {
-      $httpBackend.expectPOST('http://127.0.0.1:8080/do/turn_right')
+      $httpBackend.expectPOST('http://127.0.0.1:3000/do/turn_right')
        .respond(200, {message: 'turn_right'});
       event.keyCode = 39;
       droneController.keyPress(event);
@@ -124,7 +125,7 @@ describe('unit tests for drone control frontend', () => {
     });
 
     it('should issue a reset command', () => {
-      $httpBackend.expectPOST('http://127.0.0.1:8080/do/reset')
+      $httpBackend.expectPOST('http://127.0.0.1:3000/do/reset')
        .respond(200, {message: 'reset'});
       event.keyCode = 8;
       droneController.keyPress(event);
@@ -133,7 +134,7 @@ describe('unit tests for drone control frontend', () => {
     });
 
     it('should issue a trim command', () => {
-      $httpBackend.expectPOST('http://127.0.0.1:8080/do/trim')
+      $httpBackend.expectPOST('http://127.0.0.1:3000/do/trim')
        .respond(200, {message: 'trim'});
       event.keyCode = 69;
       droneController.keyPress(event);
@@ -142,7 +143,7 @@ describe('unit tests for drone control frontend', () => {
     });
 
     it('should issue a increase_speed command', () => {
-      $httpBackend.expectPOST('http://127.0.0.1:8080/do/increase_speed')
+      $httpBackend.expectPOST('http://127.0.0.1:3000/do/increase_speed')
        .respond(200, {message: 'increase_speed'});
       event.keyCode = 187;
       droneController.keyPress(event);
@@ -151,7 +152,7 @@ describe('unit tests for drone control frontend', () => {
     });
 
     it('should issue a decrease_speed command', () => {
-      $httpBackend.expectPOST('http://127.0.0.1:8080/do/decrease_speed')
+      $httpBackend.expectPOST('http://127.0.0.1:3000/do/decrease_speed')
        .respond(200, {message: 'decrease_speed'});
       event.keyCode = 189;
       droneController.keyPress(event);
@@ -160,7 +161,7 @@ describe('unit tests for drone control frontend', () => {
     });
 
     it('should issue a halt command', () => {
-      $httpBackend.expectPOST('http://127.0.0.1:8080/do/halt')
+      $httpBackend.expectPOST('http://127.0.0.1:3000/do/halt')
        .respond(200, {message: 'halt'});
       event.keyCode = 27;
       droneController.keyPress(event);
@@ -169,7 +170,7 @@ describe('unit tests for drone control frontend', () => {
     });
 
     it('should issue a hover command', () => {
-      $httpBackend.expectPOST('http://127.0.0.1:8080/do/hover')
+      $httpBackend.expectPOST('http://127.0.0.1:3000/do/hover')
        .respond(200, {message: 'hover'});
       droneController.hover();
       $httpBackend.flush();
