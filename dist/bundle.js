@@ -414,8 +414,7 @@
 	    vm.connected = false;
 
 	    vm.codes = {
-	      80: 'p', // PING p
-	      13: 'takeoff', // TAKE_OFF enter
+	      13: 'takeoff', // TAKEOFF enter
 	      32: 'land', // LAND space
 	      65: 'move_left', // MOVE_LEFT a
 	      68: 'move_right', // MOVE_RIGHT d
@@ -429,7 +428,7 @@
 	      69: 'trim', // TRIM e
 	      187:'increase_speed', // INCREASE SPEED +
 	      189:'decrease_speed', // DECREASE SPEED -
-	      27: 'halt' // TERMINATE esc
+	      27: 'halt' // HALT esc
 	    };
 	    vm.command = null;
 
@@ -444,7 +443,6 @@
 	          vm.battery = res.data['0'].battery + '%';
 	          vm.altitude = res.data['0'].altitude/1000 + 'm';
 	          vm.connected = true;
-	          console.log('server res: ', res);
 	        }, err => console.log('GET error: ', err));
 	    };
 
@@ -472,7 +470,6 @@
 	    vm.keyPress = function(e) { //handles key input
 	      vm.command = null;
 	      if(e.keyCode in vm.codes) {
-	        console.log(e.keyCode);
 	        vm.command = vm.codes[e.keyCode];
 	        vm.postCommands(vm.command);
 	      } else {
@@ -480,8 +477,7 @@
 	      }
 	    };
 
-	    vm.hover = function(e) { //hovers on keyup
-	      console.log('hovering ', e);
+	    vm.hover = function() { //hovers on keyup
 	      vm.command = 'hovering';
 	      vm.postCommands('hover');
 	    };
