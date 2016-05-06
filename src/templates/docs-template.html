@@ -1,27 +1,17 @@
 <section>
-  <h1>Docs</h1>
+  <h1>DOCS</h1>
   <p>Our goal is to use terminal commands to send commands to a Parrot AR Drone
-    2.0 and successfuly make the connect. The end goal of this project is to
-    hopefully be able to fly a drone using a Leap Motion Controller.</p>
+    2.0 and successfuly make the connect. The end goal of this project is to fly a drone using a Leap Motion Controller and through the browser.</p>
   <h2>Core Features</h2>
   <ul>
     <li>Create a python-based API that will communicate with a front-end server</li>
     <li>Send terminal commands to the drone, that the drone will then execute</li>
+    <li>Send commands via the front-end web application (i.e. this web app)</li>
     <li>Send useful drone information to a front-end user interface</li>
     <li>Create a module that anyone with a drone can pip install, then use to
       control their personal drone</li>
   </ul>
-  <h2>Stretch Goals</h2>
-  <ul>
-    <li>Connect a Leap Motion Controller to control the drone</li>
-    <li>Send commands via the front-end web application we have created</li>
-    <li>Use VR goggles that will connect to the drone cameras</li>
-  </ul>
-  <h2>Sources</h2>
-  <ul>
-    <li><a href="http://www.playsheep.de/drone/">Tutorial Site</a></li>
-    <li><a href="https://github.com/venthur/python-ardrone">Useful Github Repo written by Bastian Venthur</a></li>
-  </ul>
+
   <h2>Project Members</h2>
   <ul>
     <li>Luc Ho (JavaScript)</li>
@@ -30,39 +20,77 @@
     <li>Will Weatherford (Python)</li>
     <li>Munir Ibrahim (Python)</li>
   </ul>
-  <br>
-  <iframe width="640" height="360" src="https://www.youtube.com/embed/2HEV37GbUow"
-    frameborder="0" allowfullscreen></iframe>
-  <p><em>Video of the drone in action</em></p>
-  <h2>Getting Started</h2>
+  <div class="markdown-body">
+    <h1>API Endpoints</h1>
+
+    <p>The API endpoints are served using <a href="http://bottlepy.org">bottle.py</a>. </p>
+
+    <h2>Drone Commands</h2>
+
+    <p>All instructions sent to the drone are done through http post requests to <code>http://127.0.0.1:3000/do/&lt;command&gt;</code>.</p>
+
+    <h3>/do/ Available Commands</h3>
+
+    <ul>
+      <li>takeoff</li>
+      <li>land</li>
+      <li>hover</li>
+      <li>move_left</li>
+      <li>move_right</li>
+      <li>move_down</li>
+      <li>move_up</li>
+      <li>move_forward</li>
+      <li>move_backward</li>
+      <li>turn_left</li>
+      <li>turn_right</li>
+    </ul>
+
+    <p>A call to any of these commands would look like: <code>curl -X POST http://127.0.0.1:3000/do/takeoff</code></p>
+
+    <h3>/do/ API Endpoint Behavior</h3>
+
+      <p>If a command is successful, the server will return a <code>200 OK</code> response with json containing all the related fields to the drone's current status. If a command isn't valid, the server will respond with a <code>404 NOT FOUND</code> with a body containing: <code>Bad Command: &lt;command&gt;</code></p>
+
+      <h3><code>200 OK</code> Response Json</h3>
+
+        <p>200 OKs will respond with the following JSON template:</p>
+
+        <pre><code>{
+          "0": {
+            "vy": Velocity along Y Axis,
+            ...
+            "battery": Percentage of battery,
+            "altitude": Integer in mm,
+            "ctrl_state": One of the following integers,
+            # 0: Unknown, 1: Inited, 2: Landed, 4: Hovering, 6: Taking Off, 8: Landing
+            "vx": Velocity along X Axis,
+            "vz": Velocity along Z Axis,
+          } ...
+        }
+      </code></pre>
+
+      <p>There is more information that is sent back that can be found <a href="http://web.mit.edu/tinali/www/ARDrone_Developer_Guide.pdf">here</a></p>
+
+      <h2>Drone navdata</h2>
+
+        <p>At any time, a user can hit <a href="http://127.0.0.1:3000/navdata">127.0.0.1:3000/navdata</a> to see the <code>200 OK</code> JSON response from any of the valid /do/s. The format is still the same.</p>
+
+      </div>
+
+  <h2>Client Example</h2>
+  <p>This client was built using AngularJS and NodeJS.</p>
+  <p>Click <a href="https://nodejs.org/en/download/package-manager/">here</a> to install nodeJS.</p>
+  <p>After installing node:</p>
   <pre><code>
-    import libardrone
-    drone = libardrone.ARDrone()
-    # You might need to call drone.reset() before taking off if the drone is in
-    # emergency mode
-    drone.takeoff()
-    drone.land()
-    drone.halt()
+    git clone http://github.com/DroneQuest/drone-client
+    npm install
+    node client-server.js
   </code></pre>
-  <p>The drone's property <code>image</code> contains always the latest image from
-    the camera. The drone's property <code>navdata</code> contains always the
-    latest navdata.</p>
-  <h2>Demo</h2>
-  <p>There is also a demo application included which shows the video from the drone
-    and lets you remote-control the drone with the keyboard:</p>
-  <pre><code>
-    RETURN      - takeoff
-    SPACE       - land
-    BACKSPACE   - reset (from emergency)
-    a/d         - left/right
-    w/s         - forward/back
-    1,2,...,0   - speed
-    UP/DOWN     - altitude
-    LEFT/RIGHT  - turn left/right
-  </code></pre>
-  <h2>Repository</h2>
-  <p>Our project repository is here: <a href="https://github.com/DroneQuest">https://github.com/DroneQuest</a><p>
-  <p>The public repository for python-ardrone is located here: <a href="git://github.com/venthur/python-ardrone.git">git://github.com/venthur/python-ardrone.git</a></p>
+  <p>Then go to your broswer and enter <code>127.0.0.1:8080/#/fly</code>. This runs fly cmmands after you install the bottle server, below.</p>
+
+  <h2>Repositories</h2>
+  <p>Both our project repositories are here: <a href="https://github.com/DroneQuest">https://github.com/DroneQuest</a><p>
+  <p>To install the DroneQuest <a href="https://github.com/DroneQuest/drone-quest/tree/development">Click here</a></p>
   <h2>Requirements</h2>
   <p>This software was tested with the following setup:</p>
   <ul>
@@ -71,7 +99,11 @@
     <li>Pygame 1.8.1 (only for the demo)</li>
     <li>Unmodified AR.Drone firmware 1.5.1</li>
   </ul>
+  <h2>Stretch Goals</h2>
+  <ul>
+    <li>Get live video in the browser during flight</li>
+    <li>Use VR goggles that will connect to the drone cameras</li>
+  </ul>
   <h2>License</h2>
   <p>This software is published under the terms of the MIT License: <a href="http://www.opensource.org/licenses/mit-license.php">http://www.opensource.org/licenses/mit-license.php</a></p>
 </section>
-
