@@ -18,10 +18,29 @@
         id="altitude"
         data-ng-model="dronectrl.altitude"
         disabled>
-      <h5>COMMAND</h5>
+      <h5>CURRENT COMMAND</h5>
       <input class="ng-class='{{dronectrl.connected}} ? disconnected : connected'"
         id="command"
         data-ng-model="dronectrl.command">
     </div>
   </div>
+  <section id="instructions">
+    <h2>Controls</h2>
+    <ul>
+      <li><b>W:</b>  {{dronectrl.codes['87']}}</li>
+      <li><b>S:</b>  {{dronectrl.codes['83']}}</li>
+      <li><b>A:</b>  {{dronectrl.codes['65']}}</li>
+      <li><b>D:</b>  {{dronectrl.codes['68']}}</li>
+    </ul>
+    <ul>
+      <li><b>Arrow up:</b>  {{dronectrl.codes['38']}}</li>
+      <li><b>Arrow down:</b>  {{dronectrl.codes['40']}}</li>
+      <li><b>Arrow left:</b>  {{dronectrl.codes['37']}}</li>
+      <li><b>Arrow right:</b>  {{dronectrl.codes['39']}}</li>
+    </ul>
+    <ul>
+      <li><b>Enter:</b>  {{dronectrl.codes['13']}}</li>
+      <li><b>Spacebar:</b>  {{dronectrl.codes['32']}}</li>
+    </ul>
+  </section>
 </section>

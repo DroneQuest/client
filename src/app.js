@@ -6,8 +6,8 @@ angular.module('droneApp', ['ngRoute'])
   .controller('DroneController', ['$http', '$interval', function($http, $interval) {
     var vm = this;
     var route = 'http://127.0.0.1:3000/do/';
-    vm.battery = null;
-    vm.altitude = null;
+    vm.battery = 'connecting...';
+    vm.altitude = 'connecting...';
     vm.png = null;
     vm.connected = false;
 
@@ -61,8 +61,8 @@ angular.module('droneApp', ['ngRoute'])
     };
 
     vm.intervalCall = function() { //GETs on a interval to update DOM info
-      $interval(vm.getCommands, 5000);
-      $interval(vm.getImg, 5000);
+      $interval(vm.getCommands, 1000);
+      $interval(vm.getImg, 1000);
     };
 
     vm.keyPress = function(e) { //handles key input
